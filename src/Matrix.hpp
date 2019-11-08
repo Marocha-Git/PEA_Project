@@ -1,20 +1,24 @@
-#ifndef SRC_CITIES_HPP_
-#define SRC_CITIES_HPP_
+#ifndef SRC_MATRIX_HPP_
+#define SRC_MATRIX_HPP_
 
 #include "Path.hpp"
 #include <iostream>
 
 class Matrix {
-public:
+private:
   std::string fileName;
   std::string oldFileName;
   int numberOfCities = 0;
   int **distancesTab = nullptr;
 
+public:
   ~Matrix();
   void loadFromFile(std::string fileName);
   void showDistancesTab();
-  unsigned int countPath(Path path);
+  // int countPath(Path path);
+  int countPath(int tab[], int size);
+
+  inline int getSize() { return numberOfCities;};
 };
 
-#endif /* SRC_CITIES_HPP_ */
+#endif /* SRC_MATRIX_HPP_ */

@@ -48,14 +48,26 @@ void Matrix::showDistancesTab() {
 }
 
 //
-unsigned int Matrix::countPath(Path p) {
-  unsigned int sum = 0;
-  size_t size = p.pathWay.size();
-  for (size_t i = 0; i < size - 1; i++)
-    sum += this->distancesTab[p.pathWay[i]][p.pathWay[i + 1]];
+// int Matrix::countPath(Path p) {
+//   int sum = 0;
+//   size_t size = p.getSize();
+//   for (size_t i = 0; i < size - 1; i++)
+//     sum += this->distancesTab[p.getPath(i)][p.getPath(i + 1)];
+
+//   if (size == this->numberOfCities)
+//     sum += this->distancesTab[p.getPath(size - 1)][p.getPath(0)];
+
+//   return sum;
+// }
+
+int Matrix::countPath(int tab[], int size) {
+  int sum = 0;
+  for (size_t i = 0; i < size-1; i++)
+    sum += this->distancesTab[tab[i]][tab[i+1]];
 
   if (size == this->numberOfCities)
-    sum += this->distancesTab[p.pathWay[size - 1]][p.pathWay[0]];
+    sum += this->distancesTab[tab[size - 1]][tab[0]];
 
   return sum;
 }
+
