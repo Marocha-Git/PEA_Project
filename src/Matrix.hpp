@@ -18,7 +18,8 @@ public:
   // int countPath(Path path);
   int countPath(int tab[], int size);
 
-  inline int getSize() { return numberOfCities;};
+  inline int getSize() {return numberOfCities;};
+  inline std::string getFileName() {return fileName;};
 };
 
 #endif /* SRC_MATRIX_HPP_ */

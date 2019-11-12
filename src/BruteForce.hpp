@@ -19,7 +19,9 @@ private:
 public:
   BruteForce();
 
-  int swapVersion(Matrix matrix, Path path);
+  int swapVersion(Matrix matrix);
+  void showAllMinPaths();
+
   inline std::vector<Path> getAllMinPath() { return allMinPaths; };
 };
 

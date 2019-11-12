@@ -50,12 +50,25 @@ void BruteForce::clearPaths() {
 }
 
 //
-int BruteForce::swapVersion(Matrix matrix, Path path) {
+int BruteForce::swapVersion(Matrix matrix) {
   this->matrix = matrix;
+  Path path;
   path.firstPerm(matrix.getSize());
 
   this->heapPermutation(path.pathWay, path.pathSize, path.pathSize);
-  // this->clearPaths();
-  // return allMinPaths.size();
-  return shortestWay;
+  this->clearPaths();
+  return allMinPaths.size();
+}
+
+//
+void BruteForce::showAllMinPaths() {
+  std::cout << "Wszystkie najmiejsze sciezki dla " 
+            << this->matrix.getFileName() << std::endl
+            << "Dlugosc: " << this->shortestWay << std::endl;
+
+  for (size_t i = 0; i < this->allMinPaths.size(); i++) {
+    std::cout.width(3);
+    std::cout << i << "\t";
+    this->allMinPaths[i].showPath();
+  }
 }
