@@ -1,27 +1,29 @@
+#include "src/BranchAndBound.hpp"
 #include "src/BruteForce.hpp"
 #include "src/Matrix.hpp"
 #include "src/Path.hpp"
 
+#include "src/Interface.hpp"
+
 using namespace std;
 
 int main() {
-  cout << "\t### PEA PROJECT ###" << endl;
-  // {1, 3, 5, 9, 2, 4, 7, 6, 8, 0}
-  // {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
-  string filePath = "info/SMALL/";
-  string fileName = "data10.txt";
-
-  BruteForce bf;
-  Matrix matrix;
+  cout << "... START ...\n";
   Path path;
-
+  Matrix matrix;
+  string filePath = "info/SMALL/";
+  string fileName = "data5.txt";
   matrix.loadFromFile(filePath + fileName);
-  // path.showPath();
-  // matrix.showDistancesTab();
+  matrix.showMatrix();
 
-  bf.swapVersion(matrix);
-  bf.showAllMinPaths();
+  // BruteForce bf;
+  // bf.swapVersion(matrix->matrix);
+  // bf.showAllMinPaths();
 
-  cout << "\n\t### Bye! ###\n";
+  BranchAndBound bnb;
+  int cost;
+  cost = bnb.bnbAlgorithm(&matrix);
+
+  cout << "\n... STOP ...\n";
   return 0;
 }

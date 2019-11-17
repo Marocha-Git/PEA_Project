@@ -6,20 +6,28 @@
 
 class Matrix {
 private:
-  std::string fileName;
-  std::string oldFileName;
-  int numberOfCities = 0;
-  int **distancesTab = nullptr;
+  std::string fileName = "";
+  std::string oldFileName = "";
+  int cost = 0;
 
 public:
+  int matrixSize = 0;
+  int **matrix = nullptr;
   ~Matrix();
   void loadFromFile(std::string fileName);
-  void showDistancesTab();
-  // int countPath(Path path);
+
+  void showMatrix();
+  void showMatrix(int **tab, int size);
+
   int countPath(int tab[], int size);
 
-  inline int getSize() {return numberOfCities;};
-  inline std::string getFileName() {return fileName;};
+  int **getNewReducedMatrix(int **matrix, int matrixSize, int row = 0,
+                            int col = 0);
+
+  inline int getSize() { return this->matrixSize; };
+  inline std::string getFileName() { return this->fileName; };
+  inline int **getMatrix() { return this->matrix; };
+  inline void setMatrix(int **tab) { this->matrix = tab; };
 };
 
 #endif /* SRC_MATRIX_HPP_ */
