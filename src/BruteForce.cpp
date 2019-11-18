@@ -6,7 +6,7 @@ BruteForce::BruteForce() {}
 // Generating permutation using Heap Algorithm
 void BruteForce::heapPermutation(int tab[], int k, int startSize) {
   if (k == 1) {
-    int temp = matrix.countPath(tab, startSize);
+    int temp = matrix->countPath(tab, startSize);
     if (temp < shortestWay) {
       shortestWay = temp;
       Path tempPath(startSize);
@@ -50,20 +50,20 @@ void BruteForce::clearPaths() {
 }
 
 //
-int BruteForce::swapVersion(Matrix matrix) {
+int BruteForce::swapVersion(Matrix *matrix) {
   this->matrix = matrix;
   Path path;
-  path.firstPerm(matrix.getSize());
+  path.firstPerm(this->matrix->getSize());
 
   this->heapPermutation(path.pathWay, path.pathSize, path.pathSize);
   this->clearPaths();
-  return allMinPaths.size();
+  return this->shortestWay;
 }
 
 //
 void BruteForce::showAllMinPaths() {
-  std::cout << "Wszystkie najmiejsze sciezki dla " 
-            << this->matrix.getFileName() << std::endl
+  std::cout << "Wszystkie najmiejsze sciezki dla "
+            << this->matrix->getFileName() << std::endl
             << "Dlugosc: " << this->shortestWay << std::endl;
 
   for (size_t i = 0; i < this->allMinPaths.size(); i++) {

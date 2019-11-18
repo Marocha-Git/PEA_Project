@@ -9,10 +9,10 @@ private:
   std::string fileName = "";
   std::string oldFileName = "";
   int cost = 0;
-
-public:
   int matrixSize = 0;
   int **matrix = nullptr;
+
+public:
   ~Matrix();
   void loadFromFile(std::string fileName);
 

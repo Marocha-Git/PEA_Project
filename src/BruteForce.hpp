@@ -10,7 +10,7 @@
 class BruteForce {
 private:
   std::vector<Path> allMinPaths;
-  Matrix matrix;
+  Matrix *matrix;
   int shortestWay = INT32_MAX;
 
   void heapPermutation(int tab[], int k, int startSize);
@@ -19,7 +19,7 @@ private:
 public:
   BruteForce();
 
-  int swapVersion(Matrix matrix);
+  int swapVersion(Matrix *matrix);
   void showAllMinPaths();
 
   inline std::vector<Path> getAllMinPath() { return allMinPaths; };

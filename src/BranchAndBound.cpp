@@ -19,23 +19,19 @@ int BranchAndBound::bnbAlgorithm(Matrix *matrix) {
 
   Node *root = new Node(newMatrix, matrixSize, rootChildrenKeys, 0, cost, 0);
 
-  std::priority_queue<Node *, std::vector<Node *>, NodeComparison> queue;
-
   // dodawanie dzieci
   for (size_t i = 0; i < matrixSize - 1; i++) {
     Node *newChild = new Node(root, root->children[i]);
     if (newChild->cost <= upperBound)
-      queue.push(newChild);
-    else
-      delete newChild;
+      queuePush(newChild);
   }
-
   Node *tempNode;
 
-  while (!queue.empty()) {
-    tempNode = queue.top();
-    tempNode->show();
-    queue.pop();
+  while (!isQueueEmpty()) {
+    tempNode = getTop();
+    if (this->nodeMode == 1)
+      tempNode->show();
+    queuePop();
 
     // Jeśli jeszcze nie koniec
     if (tempNode->level != matrixSize - 1) {
@@ -43,7 +39,7 @@ int BranchAndBound::bnbAlgorithm(Matrix *matrix) {
       for (size_t i = 0; i < (matrixSize - tempNode->level - 1); i++) {
         Node *newChild = new Node(tempNode, tempNode->children[i]);
         if (newChild->cost <= upperBound)
-          queue.push(newChild);
+          queuePush(newChild);
       }
     } else {
       int *path = new int[matrixSize];
@@ -63,4 +59,60 @@ int BranchAndBound::bnbAlgorithm(Matrix *matrix) {
     }
   }
   return cost;
+}
+
+bool BranchAndBound::isQueueEmpty() {
+  switch (this->queueMode) {
+  case 0:
+    return LF.empty();
+    break;
+  case 1:
+    return FIFO.empty();
+    break;
+  case 2:
+    return LIFO.empty();
+    break;
+  }
+}
+
+Node *BranchAndBound::getTop() {
+  switch (this->queueMode) {
+  case 0:
+    return LF.top();
+    break;
+  case 1:
+    return FIFO.front();
+    break;
+  case 2:
+    return LIFO.top();
+    break;
+  }
+}
+
+void BranchAndBound::queuePop() {
+  switch (this->queueMode) {
+  case 0:
+    LF.pop();
+    break;
+  case 1:
+    FIFO.pop();
+    break;
+  case 2:
+    LIFO.pop();
+    break;
+  }
+}
+
+void BranchAndBound::queuePush(Node *node) {
+  switch (this->queueMode) {
+  case 0:
+    LF.push(node);
+    break;
+  case 1:
+    FIFO.push(node);
+    break;
+  case 2:
+    LIFO.push(node);
+    break;
+  }
 }
