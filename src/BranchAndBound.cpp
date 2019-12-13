@@ -52,10 +52,8 @@ int BranchAndBound::bnbAlgorithm(Matrix *matrix) {
         minPaths.clear();
         upperBound = cost;
         minPaths.push_back(path);
-      } else if (cost == upperBound) {
+      } else if (cost == upperBound)
         minPaths.push_back(path);
-      } else {
-      }
     }
   }
   return cost;
@@ -67,10 +65,10 @@ bool BranchAndBound::isQueueEmpty() {
     return LF.empty();
     break;
   case 1:
-    return FIFO.empty();
+    return LIFO.empty();
     break;
   case 2:
-    return LIFO.empty();
+    return FIFO.empty();
     break;
   }
 }
@@ -81,10 +79,10 @@ Node *BranchAndBound::getTop() {
     return LF.top();
     break;
   case 1:
-    return FIFO.front();
+    return LIFO.top();
     break;
   case 2:
-    return LIFO.top();
+    return FIFO.front();
     break;
   }
 }
@@ -95,10 +93,10 @@ void BranchAndBound::queuePop() {
     LF.pop();
     break;
   case 1:
-    FIFO.pop();
+    LIFO.pop();
     break;
   case 2:
-    LIFO.pop();
+    FIFO.pop();
     break;
   }
 }
@@ -109,10 +107,10 @@ void BranchAndBound::queuePush(Node *node) {
     LF.push(node);
     break;
   case 1:
-    FIFO.push(node);
+    LIFO.push(node);
     break;
   case 2:
-    LIFO.push(node);
+    FIFO.push(node);
     break;
   }
 }

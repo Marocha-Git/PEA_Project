@@ -2,6 +2,9 @@
 #include "src/BruteForce.hpp"
 #include "src/Matrix.hpp"
 #include "src/Path.hpp"
+#include "src/TimeCounter.hpp"
+#include "src/Tests.hpp"
+
 
 #include "src/Interface.hpp"
 
@@ -9,19 +12,24 @@
 
 int main() {
   cout << "... START ...\n";
-  // BruteForce bf;
-  // bf.swapVersion(&matrix);
-  // bf.showAllMinPaths();
+ 
+  bool quit = false;
+  if (quit == true) {
+    cout << "# Tests #";
+    cout << "(alg,folder,size,numTest)\n =>";
+    Tests tests;
+    int algorithm;
+    cin >> algorithm;
+    tests.doTest(algorithm);
+    cout << "\n TESTS end \n";
+  }
 
-  // BranchAndBound bnb;
-  // int cost;
-  // cost = bnb.bnbAlgorithm(&matrix);
-  // cout << "\n Koszt: " << cost;
+
   Interface in;
   Matrix matrix;
+  TimeCounter time;
 
   string filePath;
-  bool quit = false;
   while (!quit) {
     in.welcome();
     filePath = in.chooseDataFolder();
@@ -75,7 +83,12 @@ int main() {
       switch (in.choices[1]) {
       case 1: {
         BruteForce bt;
-        cout << "Result: " << bt.swapVersion(&matrix) << "\n";
+        time.startTimer();
+        int result = bt.swapVersion(&matrix);
+        time.stopTimer();
+        
+        cout << "Result: " << result << "\n";
+        cout << "Czas: " << time.getElapsedTime() << "\n"; 
         break;
       }
       case 2: {
@@ -97,8 +110,11 @@ int main() {
       bnb.setNodeMode(in.choices[2]);
       switch (in.choices[3]) {
       case 1: {
+        time.startTimer();
         int result = bnb.bnbAlgorithm(&matrix);
+        time.stopTimer();
         cout << "\nResult: " << result << "\n";
+        cout << "Czas: " << time.getElapsedTime() << "\n"; 
         break;
       }
       case 2: {
@@ -110,8 +126,11 @@ int main() {
         bnb.setUpperBound(length);
         cout << "\nUpper bound set to " << length;
 
+        time.startTimer();
         int result = bnb.bnbAlgorithm(&matrix);
+        time.stopTimer();
         cout << "\nResult: " << result << "\n";
+        cout << "Czas: " << time.getElapsedTime() << "\n"; 
         break;
       }
       case 3: {
@@ -123,19 +142,16 @@ int main() {
         bnb.setUpperBound(length);
         cout << "\nUpper bound set to " << length;
 
+        time.startTimer();
         int result = bnb.bnbAlgorithm(&matrix);
+        time.stopTimer();
         cout << "\nResult: " << result << "\n";
-
+        cout << "Czas: " << time.getElapsedTime() << "\n"; 
         break;
       }
       default:
         break;
       }
-      break;
-    }
-    // Dynamic Programing
-    case 4: {
-
       break;
     }
     default:

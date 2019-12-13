@@ -47,7 +47,6 @@ bool Interface::mainMenu() {
     cout << "\n1. Path\n"
             "2. Brute-Force\n"
             "3. Branch And Bound\n"
-            "4. Dynamic Programming\n"
             "0. Quit\n"
             "=> ";
     cin >> temp;
@@ -98,7 +97,7 @@ bool Interface::mainMenu() {
   case 3: {
     cout << "\t# Branch and Bound #\n";
     cout << "\tSet BnB mode:\n"
-            "First num: queue mode (0-LF, 1-FIFO, 2-LIFO)\n"
+            "First num: queue mode (0-LF, 1-LIFO, 2-FIFO)\n"
             "Second num: node mode (0-hidden, 1-visible)\n";
     for (size_t i = 0; i < 2; i++) {
       cout << "=> ";
@@ -113,16 +112,6 @@ bool Interface::mainMenu() {
               "=> ";
       cin >> temp;
     } while (temp < 1 && temp > 3);
-    this->choices.push_back(temp);
-    break;
-  }
-
-  case 4: {
-    do {
-      cout << "1. Not implemented :( \n"
-              "=> ";
-      cin >> temp;
-    } while (temp < 1 && temp > 1);
     this->choices.push_back(temp);
     break;
   }

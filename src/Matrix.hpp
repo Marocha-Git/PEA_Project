@@ -15,12 +15,9 @@ private:
 public:
   ~Matrix();
   void loadFromFile(std::string fileName);
-
   void showMatrix();
   void showMatrix(int **tab, int size);
-
   int countPath(int tab[], int size);
-
   int **getNewReducedMatrix(int **matrix, int matrixSize, int row = 0,
                             int col = 0);
 

@@ -51,8 +51,6 @@ void Node::show() {
   std::cout << "\n# Node #"
             << "\nKey: " << key << "\nCost " << cost << "\nLevel " << level
             << "\n";
-  this->matrix.showMatrix(reducedMatrix, matrixSize);
-
   std::cout << "Current path: ";
   for (size_t i = 0; i <= level; i++)
     std::cout << currentPath[i] << " ";

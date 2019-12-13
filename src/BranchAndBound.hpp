@@ -12,8 +12,8 @@ private:
   std::vector<int *> minPaths;
 
   std::priority_queue<Node *, std::vector<Node *>, NodeComparison> LF;
-  std::queue<Node *> FIFO;
   std::stack<Node *> LIFO;
+  std::queue<Node *> FIFO;
 
   int upperBound = INT32_MAX;
   int queueMode = 1;

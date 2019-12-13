@@ -56,12 +56,12 @@ int BruteForce::swapVersion(Matrix *matrix) {
   path.firstPerm(this->matrix->getSize());
 
   this->heapPermutation(path.pathWay, path.pathSize, path.pathSize);
-  this->clearPaths();
   return this->shortestWay;
 }
 
 //
 void BruteForce::showAllMinPaths() {
+  this->clearPaths();
   std::cout << "Wszystkie najmiejsze sciezki dla "
             << this->matrix->getFileName() << std::endl
             << "Dlugosc: " << this->shortestWay << std::endl;

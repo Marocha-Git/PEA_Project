@@ -22,7 +22,9 @@ public:
   int swapVersion(Matrix *matrix);
   void showAllMinPaths();
 
-  inline std::vector<Path> getAllMinPath() { return allMinPaths; };
+  inline std::vector<Path> getAllMinPath() { 
+    this->clearPaths();
+    return allMinPaths; };
 };
 
 #endif /* SRC_BRUTEFORCE_HPP_ */
