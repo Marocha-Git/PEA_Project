@@ -68,6 +68,17 @@ int Matrix::countPath(int tab[], int size) {
   return sum;
 }
 
+int Matrix::countPath(std::vector<int> path) {
+  int sum = 0;
+  for (size_t i = 0; i < path.size() - 1; i++)
+    sum += this->matrix[path[i]][path[i + 1]];
+
+  if (path.size() == this->matrixSize)
+    sum += this->matrix[path[path.size() - 1]][path[0]];
+
+  return sum;
+}
+
 int **Matrix::getNewReducedMatrix(int **matrix, int matrixSize, int row,
                                   int col) {
   int cost = 0;

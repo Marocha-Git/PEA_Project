@@ -4,6 +4,7 @@
 #include "src/Path.hpp"
 #include "src/TimeCounter.hpp"
 #include "src/Tests.hpp"
+#include "src/TabuSearch.hpp"
 
 
 #include "src/Interface.hpp"
@@ -152,6 +153,17 @@ int main() {
       default:
         break;
       }
+      break;
+    }
+    case 4: {
+      Path path;
+      TabuSearch ts = TabuSearch(in.choices[1],in.choices[2],in.choices[3],in.choices[4],in.choices[5],in.choices[6]);
+      time.startTimer();
+      int result = ts.tsAlgorithm(&matrix);
+      time.stopTimer();
+      cout << "\nResult: " << result << "\n";
+      cout << "Czas: " << time.getElapsedTime() << "\n"; 
+      path.showPath(ts.getBestPath());
       break;
     }
     default:

@@ -21,9 +21,11 @@ public:
 
   void showPath();
   void showPath(int *path, int pathSize);
+  void showPath(std::vector<int> path);
   int *firstPerm(int size);
 
   int *randomPath(int pathLength, int min, int max);
+  std::vector<int> randomVectorPath(int pathLength, int min, int max);
   // int *createPath();
 };
 

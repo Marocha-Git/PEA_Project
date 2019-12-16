@@ -116,6 +116,24 @@ bool Interface::mainMenu() {
     break;
   }
 
+  case 4: {
+    cout << "\t# Tabu Search #\n";
+    cout << "\tSet TS mode:\n"
+            "Iterrations\n"
+            "Representation mode\n"
+            "Cadence\n"
+            "Start mode\n"
+            "Neighbourhood mode\n"
+            "Worse results limit\n";
+    for (size_t i = 0; i < 6; i++) {
+      cout << "=> ";
+      cin >> temp;
+      this->choices.push_back(temp);
+    }
+    break;
+  }
+
+
   default:
     break;
   }
