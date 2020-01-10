@@ -4,14 +4,11 @@
 TabuSearch::TabuSearch() {}
 
 //
-TabuSearch::TabuSearch(int iterat, int repMode, int cadence, int startMode, int neighbourMode, int lim) : 
-iterations(iterat), 
-representationMode(repMode), 
-cadence(cadence), 
-startMode(startMode), 
-neighbourMode(neighbourMode), 
-worseResultsLimit(lim) {}
-
+TabuSearch::TabuSearch(int iterat, int repMode, int cadence, int startMode,
+                       int neighbourMode, int lim)
+    : iterations(iterat), representationMode(repMode), cadence(cadence),
+      startMode(startMode), neighbourMode(neighbourMode),
+      worseResultsLimit(lim) {}
 
 //
 int TabuSearch::tsAlgorithm(Matrix *matrix) {
@@ -24,7 +21,7 @@ int TabuSearch::tsAlgorithm(Matrix *matrix) {
     for (size_t i = 0; i < matrixSize; i++) {
       tabuArray[i] = new int[matrixSize];
       for (size_t j = 0; j < matrixSize; j++)
-        tabuArray[i][j] = -1;      
+        tabuArray[i][j] = -1;
     }
   }
 
@@ -34,9 +31,8 @@ int TabuSearch::tsAlgorithm(Matrix *matrix) {
   if (startMode == 0) {
     for (size_t i = 0; i < matrixSize; i++)
       mainPath.push_back(i);
-  }
-  else if (startMode == 1) 
-    this->mainPath = p.randomVectorPath(matrixSize,0,matrixSize-1);
+  } else if (startMode == 1)
+    this->mainPath = p.randomVectorPath(matrixSize, 0, matrixSize - 1);
 
   int tempMin;
   for (size_t i = 0; i < iterations; i++) {
@@ -51,8 +47,7 @@ int TabuSearch::tsAlgorithm(Matrix *matrix) {
       worseResults = 0;
       tabuList.clear();
       mainPath = p.randomVectorPath(matrixSize, 0, matrixSize - 1);
-    }
-    else if (tempMin >= result) {
+    } else if (tempMin >= result) {
       worseResults++;
     }
   }
@@ -70,21 +65,22 @@ void TabuSearch::neighbourhood() {
     for (size_t j = i + 1; j < matrixSize; j++) {
       bool forbiddenMove = false;
 
-      if(representationMode == 0) {
-        for (Tabu tl : tabuList) 
-          if ((tl.move[0] == i && tl.move[1] == j) || (tl.move[0] == j && tl.move[1] == i))
+      if (representationMode == 0) {
+        for (Tabu tl : tabuList)
+          if ((tl.move[0] == i && tl.move[1] == j) ||
+              (tl.move[0] == j && tl.move[1] == i))
             forbiddenMove = true;
       } else {
         for (size_t k = 0; k < matrixSize; k++)
           for (size_t l = k + 1; l < matrixSize; l++)
             if (tabuArray[k][l] == 0 || tabuArray[k][l] == 0)
-              forbiddenMove = true;       
+              forbiddenMove = true;
       }
-      
+
       if (!forbiddenMove) {
         switch (neighbourMode) {
         case 0:
-          std::swap(temp[i],temp[j]);
+          std::swap(temp[i], temp[j]);
           break;
         case 1: {
           int val = temp[j];
@@ -107,17 +103,17 @@ void TabuSearch::neighbourhood() {
           tempTabuMove[1] = j;
         }
       }
-      temp = mainPath; 
-    } 
+      temp = mainPath;
+    }
   }
   mainPath = bestNeighbour;
 
   if (representationMode == 0) {
     for (auto it = tabuList.begin(); it != tabuList.end();) {
       it->cadence -= 1;
-      if (it->cadence == 0) 
+      if (it->cadence == 0)
         it = tabuList.erase(it);
-      else 
+      else
         it++;
     }
     Tabu t = Tabu(tempTabuMove, this->cadence);
@@ -126,9 +122,7 @@ void TabuSearch::neighbourhood() {
     for (size_t k = 0; k < matrixSize; k++)
       for (size_t l = k + 1; l < matrixSize; l++)
         if (tabuArray[k][l] == 0 || tabuArray[k][l] == 0)
-          tabuArray[k][l]--;  
+          tabuArray[k][l]--;
     tabuArray[tempTabuMove[0]][tempTabuMove[1]] = cadence;
   }
-
-
 }

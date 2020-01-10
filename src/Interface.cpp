@@ -133,7 +133,6 @@ bool Interface::mainMenu() {
     break;
   }
 
-
   default:
     break;
   }

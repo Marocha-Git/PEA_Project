@@ -2,10 +2,9 @@
 #include "src/BruteForce.hpp"
 #include "src/Matrix.hpp"
 #include "src/Path.hpp"
-#include "src/TimeCounter.hpp"
-#include "src/Tests.hpp"
 #include "src/TabuSearch.hpp"
-
+#include "src/Tests.hpp"
+#include "src/TimeCounter.hpp"
 
 #include "src/Interface.hpp"
 
@@ -13,8 +12,8 @@
 
 int main() {
   cout << "... START ...\n";
- 
-  bool quit = false;
+
+  bool quit = true;
   if (quit == true) {
     cout << "# Tests #";
     cout << "(alg,folder,size,numTest)\n =>";
@@ -24,7 +23,6 @@ int main() {
     tests.doTest(algorithm);
     cout << "\n TESTS end \n";
   }
-
 
   Interface in;
   Matrix matrix;
@@ -87,9 +85,9 @@ int main() {
         time.startTimer();
         int result = bt.swapVersion(&matrix);
         time.stopTimer();
-        
+
         cout << "Result: " << result << "\n";
-        cout << "Czas: " << time.getElapsedTime() << "\n"; 
+        cout << "Czas: " << time.getElapsedTime() << "\n";
         break;
       }
       case 2: {
@@ -115,7 +113,7 @@ int main() {
         int result = bnb.bnbAlgorithm(&matrix);
         time.stopTimer();
         cout << "\nResult: " << result << "\n";
-        cout << "Czas: " << time.getElapsedTime() << "\n"; 
+        cout << "Czas: " << time.getElapsedTime() << "\n";
         break;
       }
       case 2: {
@@ -131,7 +129,7 @@ int main() {
         int result = bnb.bnbAlgorithm(&matrix);
         time.stopTimer();
         cout << "\nResult: " << result << "\n";
-        cout << "Czas: " << time.getElapsedTime() << "\n"; 
+        cout << "Czas: " << time.getElapsedTime() << "\n";
         break;
       }
       case 3: {
@@ -147,7 +145,7 @@ int main() {
         int result = bnb.bnbAlgorithm(&matrix);
         time.stopTimer();
         cout << "\nResult: " << result << "\n";
-        cout << "Czas: " << time.getElapsedTime() << "\n"; 
+        cout << "Czas: " << time.getElapsedTime() << "\n";
         break;
       }
       default:
@@ -157,12 +155,13 @@ int main() {
     }
     case 4: {
       Path path;
-      TabuSearch ts = TabuSearch(in.choices[1],in.choices[2],in.choices[3],in.choices[4],in.choices[5],in.choices[6]);
+      TabuSearch ts = TabuSearch(in.choices[1], in.choices[2], in.choices[3],
+                                 in.choices[4], in.choices[5], in.choices[6]);
       time.startTimer();
       int result = ts.tsAlgorithm(&matrix);
       time.stopTimer();
       cout << "\nResult: " << result << "\n";
-      cout << "Czas: " << time.getElapsedTime() << "\n"; 
+      cout << "Czas: " << time.getElapsedTime() << "\n";
       path.showPath(ts.getBestPath());
       break;
     }
