@@ -57,7 +57,7 @@ void Tests::testBruteForce() {
 //   //   int result = bnb.bnbAlgorithm(&matrix);
 //   //   time.stopTimer();
 //   //   csvFile <<0<<",INF,"<< result <<","<< i+1 <<","<<
-//   time.getElapsedTime()
+//   // time.getElapsedTime()
 //   //   << "\n";
 //   // }
 
@@ -124,7 +124,8 @@ void Tests::testTabuSearch() {
 
   string csvFileName = fileNameTests + ".csv";
   std::ofstream csvFile;
-  csvFile.open(csvFileName);
+  csvFile.open(csvFileName, std::ios_base::app);
+  csvFile << matrixSize << "\n";
   csvFile << "iterat,repMode,cadence,startMode,nbMode,lim\n";
   csvFile << choices[1] << "," << choices[2] << "," << choices[3] << ","
           << choices[4] << "," << choices[5] << "," << choices[6] << ",\n";
