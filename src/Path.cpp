@@ -42,7 +42,6 @@ void Path::showPath(std::vector<int> path) {
 
 //
 int *Path::randomPath(int pathLength, int min, int max) {
-  srand(unsigned(time(0)));
   if ((max - min) < pathLength && min >= max)
     throw std::length_error("Path length out of range");
 
@@ -60,7 +59,6 @@ int *Path::randomPath(int pathLength, int min, int max) {
 
 //
 std::vector<int> Path::randomVectorPath(int pathLength, int min, int max) {
-  srand(unsigned(time(0)));
   if ((max - min) < pathLength && min >= max)
     throw std::length_error("Path length out of range");
 

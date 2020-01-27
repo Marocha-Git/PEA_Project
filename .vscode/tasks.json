@@ -9,7 +9,20 @@
       "command": "g++",
       "args": [
         "main.cpp", //
-        "src/*",
+        // "src/*",
+        "src/Genetic.cpp",
+        "src/Genetic.hpp",
+        "src/GeneticUnit.hpp",
+        "src/GeneticUnit.cpp",
+        "src/Interface.cpp",
+        "src/Interface.hpp",
+        "src/Matrix.hpp",
+        "src/Matrix.cpp",
+        "src/Path.cpp",
+        "src/Path.hpp",
+        "src/TimeCounter.hpp",
+        // "src/Tests.hpp",
+        // "src/Tests.cpp",
         "-o",
         "${workspaceFolderBasename}"
       ],

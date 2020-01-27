@@ -5,7 +5,6 @@
 #include "Path.hpp"
 #include "TabuSearch.hpp"
 #include "TimeCounter.hpp"
-
 #include <fstream>
 #include <iostream>
 

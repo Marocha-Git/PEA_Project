@@ -132,6 +132,25 @@ bool Interface::mainMenu() {
     }
     break;
   }
+    // case 5: {
+    //   float temp2;
+    //   cout << "\t# Genetic #\n";
+    //   cout << "\tSet mode:\n"
+    //           "crossover probability\n"
+    //           "operation cross\n"
+    //           "mutation probability\n"
+    //           "operation mut\n"
+    //           "elites percent\n"
+    //           "tournament size\n"
+    //           "population size\n"
+    //           "generations\n";
+    //   for (size_t i = 0; i < 8; i++) {
+    //     cout << "=> ";
+    //     cin >> temp2;
+    //     this->choices2.push_back(temp);
+    //   }
+    //   break;
+    // }
 
   default:
     break;

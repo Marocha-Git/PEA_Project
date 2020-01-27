@@ -101,7 +101,7 @@ void Tests::testBruteForce() {
 //   }
 
 //   csvFile.close();
-// }
+// }:
 
 //
 void Tests::testTabuSearch() {
