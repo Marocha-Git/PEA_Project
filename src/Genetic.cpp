@@ -25,9 +25,6 @@ int Genetic::geneticAlgorythm(Matrix *m) {
 
   // main loop
   for (size_t generation = 0; generation < generations; generation++) {
-    std::cout << "\n\t # Generation: " << generation << "\n";
-    std::cout << "\nPopulation: " << population.size();
-    std::cout << "\nParents: " << parents.size();
     for (size_t i = 0; i < populationSize; i++) {
       // check for result
       if (minPathCost > population[i]->getPathCost()) {
@@ -37,16 +34,17 @@ int Genetic::geneticAlgorythm(Matrix *m) {
     }
     // elit parent units
     if (generation > 0)
-      parents.assign(elites.begin(),
-                     elites.begin() + (populationSize * elitesPercent));
+      for (size_t i = 0; i < populationSize * elitesPercent; i++)
+        parents.push_back(elites[i]);
     else
-      parents.assign(population.begin(),
-                     population.begin() + (populationSize * elitesPercent));
+      for (size_t i = 0; i < populationSize * elitesPercent; i++)
+        parents.push_back(population[i]);
 
     tournament();
 
     // cross
-    for (size_t i = 0; i < populationSize; i = i + 2)
+    for (size_t i = populationSize * elitesPercent; i < populationSize;
+         i = i + 2)
       parents[i]->crossover(operationCross, crossoverProb, parents[i + 1],
                             population[i], population[i + 1]);
 
@@ -58,17 +56,10 @@ int Genetic::geneticAlgorythm(Matrix *m) {
       return lhs->getFitness() > rhs->getFitness();
     });
 
-    std::cout << "\nParents: ";
-    for (size_t i = 0; i < populationSize; i++) {
-      parents[i]->showUnit();
-    }
-
-    elites.assign(parents.begin(),
-                  parents.begin() + (populationSize * elitesPercent));
+    for (size_t i = 0; i < populationSize * elitesPercent; i++)
+      elites.push_back(parents[i]);
 
     parents.clear();
-    std::cout << "\nPopulation: " << population.size();
-    std::cout << "\nParents: " << parents.size();
   }
 
   return minPathCost;
@@ -79,7 +70,6 @@ void Genetic::tournament() {
   std::vector<GeneticUnit *> fighters;
 
   for (size_t i = populationSize * elitesPercent; i < populationSize; i++) {
-
     for (size_t i = 0; i < tournamentSize; i++)
       fighters.push_back(new GeneticUnit(*population[rand() % populationSize]));
 
